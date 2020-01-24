@@ -1,0 +1,11 @@
+{
+  "name": "cows",
+  "version": "1.0.0",
+  "description": "CRUD app",
+  "main": "./client/index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "underthecode",
+  "license": "ISC"
+}
