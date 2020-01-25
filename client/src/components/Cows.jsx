@@ -12,6 +12,14 @@ class Cows extends React.Component {
     return (
       <div>
         <h1>Cows</h1>
+        <div className='flex-row'>
+          <div className='flex-large'>
+            <h2>Add cow</h2>
+          </div>
+          <div className='flex-large'>
+            <h2>View cows</h2>
+          </div>
+        </div>
       </div>
     );
   }
