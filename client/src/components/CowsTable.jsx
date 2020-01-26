@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CowsTable = () => (
+const CowsTable = props => (
   <table>
     <thead>
       <tr>
@@ -10,14 +10,22 @@ const CowsTable = () => (
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Name Data</td>
-        <td>Description Data</td>
-        <td>
-          <button className='button muted-button'>Edit</button>
-          <button className='button muted-button'>Delete</button>
-        </td>
-      </tr>
+      {props.cows.length > 0 ? (
+        props.cows.map(cow => (
+          <tr key={cow.id}>
+            <td>{cow.name}</td>
+            <td>{cow.description}</td>
+            <td>
+              <button className='button muted-button'>Edit</button>
+              <button className='button muted-button'>Delete</button>
+            </td>
+          </tr>
+        ))
+      ) : (
+        <tr>
+          <td colSpan={3}>No cows</td>
+        </tr>
+      )}
     </tbody>
   </table>
 );
