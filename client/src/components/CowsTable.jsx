@@ -17,7 +17,11 @@ const CowsTable = props => (
             <td>{cow.description}</td>
             <td>
               <button className='button muted-button'>Edit</button>
-              <button className='button muted-button'>Delete</button>
+              <button
+                onClick={() => props.deleteCow(cow.id)}
+                className='button muted-button'>
+                Delete
+              </button>
             </td>
           </tr>
         ))

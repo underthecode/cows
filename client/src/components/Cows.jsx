@@ -46,6 +46,10 @@ const Cows = () => {
     setCows([...cows, cow]);
   };
 
+  const deleteCow = id => {
+    setCows(cows.filter(cow => cow.id !== id));
+  };
+
   return (
     <div>
       <h1>CRUD App with Cows</h1>
@@ -56,7 +60,7 @@ const Cows = () => {
         </div>
         <div className='flex-large'>
           <h2>View cows</h2>
-          <CowsTable cows={cows} />
+          <CowsTable cows={cows} deleteCow={deleteCow} />
         </div>
       </div>
     </div>
