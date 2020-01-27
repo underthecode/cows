@@ -6,14 +6,12 @@ const AddCowForm = props => {
 
   const onChange = e => {
     const { name, value } = e.target;
-
     setCow({ ...cow, [name]: value });
   };
 
   const onSubmit = e => {
     e.preventDefault();
     if (!cow.name || !cow.description) return;
-
     props.addCow(cow);
     setCow(initFormState);
   };
