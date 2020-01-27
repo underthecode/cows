@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import axios from 'axios';
 
 import CowsTable from './CowsTable.jsx';
@@ -72,20 +72,24 @@ const Cows = () => {
       <div className='flex-row'>
         <div className='flex-large'>
           {editing ? (
-            <div>
-              <h2>Edit cow</h2>
-              <EditCowForm
-                editing={editing}
-                setEditing={setEditing}
-                currentCow={currentCow}
-                updateCow={updateCow}
-              />
-            </div>
+            <Fragment>
+              <div>
+                <h2>Edit cow</h2>
+                <EditCowForm
+                  editing={editing}
+                  setEditing={setEditing}
+                  currentCow={currentCow}
+                  updateCow={updateCow}
+                />
+              </div>
+            </Fragment>
           ) : (
-            <div>
-              <h2>Add cow</h2>
-              <AddCowForm addCow={addCow} />
-            </div>
+            <Fragment>
+              <div>
+                <h2>Add cow</h2>
+                <AddCowForm addCow={addCow} />
+              </div>
+            </Fragment>
           )}
         </div>
         <div className='flex-large'>
