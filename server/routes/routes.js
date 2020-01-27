@@ -6,7 +6,9 @@ router.get('/', (req, res) => {
   res.status(200).send('Cows homepage renders');
 });
 
-router.post('/createcow', (req, res) => {
+router.get('/api/cows', (req, res) => {});
+
+router.post('/api/cows', (req, res) => {
   controllers.createCow(req.body, (err, data) => {
     if (err) {
       throw err;
