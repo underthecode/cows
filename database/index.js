@@ -35,21 +35,19 @@ let read = callback => {
   });
 };
 
-let create = data => {
-  data.forEach(cow => {
-    const newCow = new Cow({
-      cow_id: cow.id,
-      cow_name: cow.name,
-      cow_description: cow.description
-    });
+let create = body => {
+  const newCow = new Cow({
+    cow_id: body.id,
+    cow_name: body.name,
+    cow_description: body.description
+  });
 
-    newCow.create((err, data) => {
-      if (err) {
-        console.log(`This a duplicate doucment`);
-      } else {
-        console.log(`${data} was created`);
-      }
-    });
+  newCow.save((err, body) => {
+    if (err) {
+      console.log(`This is a duplicate document entry`);
+    } else {
+      console.log(`${body} was created`);
+    }
   });
 };
 

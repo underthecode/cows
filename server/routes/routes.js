@@ -9,11 +9,12 @@ router.get('/', (req, res) => {
 router.get('/api/cows', (req, res) => {});
 
 router.post('/api/cows', (req, res) => {
-  controllers.createCow(req.body, (err, data) => {
+  const cow = req.body;
+  controllers.createCow(cow, (err, data) => {
     if (err) {
       throw err;
     } else {
-      console.log('Routes: createCow POST success');
+      console.log(`Routes: createCow POST success`);
       res.status(201).send(data);
     }
   });

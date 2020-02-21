@@ -5,7 +5,7 @@ const createCow = (body, callback) => {
     if (err) {
       throw err;
     } else {
-      console.log('Controllers: createCow POST success');
+      console.log(`Controllers: createCow POST success`);
       callback(null, data);
     }
   });
