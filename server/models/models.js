@@ -6,6 +6,13 @@ const createCow = (body, callback) => {
   callback(null, body);
 };
 
+const readCow = callback => {
+  console.log(`Models: readCow GET success`);
+  database.read(body);
+  callback(null, body);
+};
+
 module.exports = {
-  createCow
+  createCow,
+  readCow
 };

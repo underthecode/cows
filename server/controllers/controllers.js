@@ -11,6 +11,18 @@ const createCow = (body, callback) => {
   });
 };
 
+const readCow = callback => {
+  models.readCow((err, data) => {
+    if (err) {
+      throw err;
+    } else {
+      console.log(`Controllers: readCow GET success`);
+      callback(null, data);
+    }
+  });
+};
+
 module.exports = {
-  createCow
+  createCow,
+  readCow
 };
