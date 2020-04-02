@@ -1,30 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const controllers = require('../controllers/controllers');
-
-router.get('/', (req, res) => {
-  res.status(200).send('Cows homepage renders');
-});
+const models = require('../models/models');
 
 router.post('/api/cows', (req, res) => {
-  const cow = req.body;
-  controllers.createCow(cow, (err, data) => {
-    if (err) {
-      throw err;
-    } else {
-      console.log(`Routes: createCow POST success`);
-      res.status(201).send(data);
-    }
+  const { id, name, description } = req.body;
+  const data = new models.Cow({
+    id,
+    name,
+    description
   });
+
+  data
+    .save()
+    .then(data => {
+      res.status(201).json(data);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
 });
 
 router.get('/api/cows', (req, res) => {
-  controllers.readCow((err, data) => {
+  models.Cow.find((err, data) => {
     if (err) {
-      throw err;
+      console.log(err);
     } else {
-      console.log(`Routes: readCow GET success`);
-      res.status(200).send(data);
+      res.status(200).json(data);
     }
   });
 });
