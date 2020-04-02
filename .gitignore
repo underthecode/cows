@@ -1,5 +1,4 @@
 # compiled files
-server/config/dev.js
 client/dist/bundle.js
 database/auth.js
 
