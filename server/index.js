@@ -3,9 +3,10 @@ const cors = require('cors');
 const path = require('path');
 const routes = require('./routes/routes');
 const mongoose = require('mongoose');
-const keys = require('../server/config/keys');
 
-const PORT = process.env.PORT || 3000;
+require('dotenv').config();
+const mongoUri = process.env.MONGO_URI;
+const port = process.env.PORT;
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/', routes);
 
 mongoose
-  .connect(keys.mongoURI, {
+  .connect(mongoUri, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -29,6 +30,6 @@ mongoose
     console.log(err);
   });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server listening on ${port}`);
 });
