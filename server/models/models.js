@@ -1,18 +1,11 @@
-const database = require('../../database/index');
+const mongoose = require('mongoose');
 
-const createCow = (body, callback) => {
-  console.log(`Models: createCow POST success`);
-  database.create(body);
-  callback(null, body);
-};
+let cowSchema = new mongoose.Schema({
+  id: { type: Number, unique: true, required: true },
+  name: String,
+  description: String
+});
 
-const readCow = callback => {
-  console.log(`Models: readCow GET success`);
-  database.read(body);
-  callback(null, body);
-};
+let Cow = mongoose.model('Cow', cowSchema);
 
-module.exports = {
-  createCow,
-  readCow
-};
+module.exports = { Cow };
