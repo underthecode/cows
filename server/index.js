@@ -10,7 +10,7 @@ const port = process.env.PORT;
 const mongoose = require('mongoose');
 const mongoUri = process.env.MONGO_URI;
 
-// server config
+// server connection
 const app = express();
 
 app.use(cors());
@@ -24,7 +24,7 @@ app.listen(port, () => {
   console.log(`Server listening on ${port}`);
 });
 
-// database config
+// database connection
 mongoose
   .connect(mongoUri, {
     useCreateIndex: true,
