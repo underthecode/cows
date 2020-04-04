@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const models = require('../models/Cows');
+const models = require('../models/Cow');
 
 router.post('/api/cows', (req, res) => {
   const { id, name, description } = req.body;
