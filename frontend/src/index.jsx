@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import css from './styles/Buttons.css';
-import Cows from './components/Cows.jsx';
+import 'bootstrap/dist/css/bootstrap.css';
+import App from './App.jsx';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
-ReactDOM.render(<Cows />, document.getElementById('cows-app'));
+ReactDOM.render(<App />, document.getElementById('app'));
