@@ -2,79 +2,67 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models/Cow');
 
-router.post('/api/cow', (req, res) => {
-  const { name, description } = req.body;
-  const data = new models.Cow({
-    name,
-    description
-  });
-
-  data
-    .save()
-    .then(data => {
-      res.status(201).json(data);
-    })
-    .catch(err => {
-      res.status(400).send(err);
+router.post('/api/cow', async (req, res) => {
+  try {
+    const { name, description } = req.body;
+    const data = await new models.Cow({
+      name,
+      description
     });
+    data.save();
+    res.status(201).json(data);
+  } catch {
+    res.status(403).send({ error: 'Duplicate entry attempted' });
+  }
 });
 
-router.get('/api/cows', (req, res) => {
-  models.Cow.find()
-    .then(data => {
-      res.status(200).json(data);
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
+router.get('/api/cows', async (req, res) => {
+  try {
+    const data = await models.Cow.find();
+    res.status(200).json(data);
+  } catch {
+    res.status(404).send({ error: 'Documents do not exist' });
+  }
 });
 
-router.get('/api/cow/:id', (req, res) => {
-  const _id = req.params.id;
-
-  models.Cow.findOne({ _id })
-    .then(data => {
-      res.status(200).json(data);
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
+router.get('/api/cow/:id', async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const data = await models.Cow.findOne({ _id });
+    res.status(200).json(data);
+  } catch {
+    res.status(404).send({ error: 'Document does not exist' });
+  }
 });
 
-router.patch('/api/cow/:id', (req, res) => {
-  const _id = req.params.id;
+router.patch('/api/cow/:id', async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const data = await models.Cow.findOne({ _id });
 
-  models.Cow.findOne({ _id })
-    .then(data => {
-      const { name, description } = req.body;
+    const { name, description } = req.body;
+    if (name) {
+      data.name = name;
+    }
+    if (description) {
+      data.description = description;
+    }
+    data.save();
 
-      if (name) {
-        data.name = name;
-      }
-
-      if (description) {
-        data.description = description;
-      }
-
-      data.save().then(data => {
-        res.status(200).json(data);
-      });
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
+    res.status(200).json(data);
+  } catch {
+    res.status(404).send({ error: 'Document does not exist' });
+  }
 });
 
-router.delete('/api/cow/:id', (req, res) => {
-  const _id = req.params.id;
-
-  models.Cow.findOneAndDelete({ _id })
-    .then(() => {
-      res.status(204).send();
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
+router.delete('/api/cow/:id', async (req, res) => {
+  try {
+    const _id = req.params.id;
+    await models.Cow.deleteOne({ _id });
+    res.status(204).send();
+  } catch {
+    res.status(404).send({ error: 'Document does not exist' });
+  }
 });
 
 module.exports = router;
