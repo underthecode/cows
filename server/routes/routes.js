@@ -30,9 +30,9 @@ router.get('/api/cows', (req, res) => {
 });
 
 router.get('/api/cow/:id', (req, res) => {
-  const { id } = req.params;
+  const _id = req.params.id;
 
-  models.Cow.findById(id)
+  models.Cow.findOne({ _id })
     .then(data => {
       res.status(200).json(data);
     })
@@ -42,9 +42,9 @@ router.get('/api/cow/:id', (req, res) => {
 });
 
 router.patch('/api/cow/:id', (req, res) => {
-  const { id } = req.params;
+  const _id = req.params.id;
 
-  models.Cow.findById(id)
+  models.Cow.findOne({ _id })
     .then(data => {
       const { name, description } = req.body;
 
