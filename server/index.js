@@ -1,30 +1,15 @@
-// requirements and env vars
+// env vars and requirements
+require('dotenv').config();
+const port = process.env.PORT;
+const mongoUri = process.env.MONGO_URI;
+
+const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const routes = require('./routes/routes');
 
-require('dotenv').config();
-const port = process.env.PORT;
-
-const mongoose = require('mongoose');
-const mongoUri = process.env.MONGO_URI;
-
-// server connection
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-app.use(express.static(path.join(__dirname, '../client/dist')));
-
-app.use('/', routes);
-
-app.listen(port, () => {
-  console.log(`Server listening on ${port}`);
-});
-
-// database connection
+// database connection and server initialization
 mongoose
   .connect(mongoUri, {
     useCreateIndex: true,
@@ -34,6 +19,14 @@ mongoose
   .then(() => {
     console.log(`Connected to MongoDB`);
   })
-  .catch(err => {
-    console.log(err);
+  .then(() => {
+    const app = express();
+    app.use(cors());
+    app.use(express.json());
+    app.use(express.static(path.join(__dirname, '../client/dist')));
+    app.use('/', routes);
+
+    app.listen(port, () => {
+      console.log(`Server listening on ${port}`);
+    });
   });
