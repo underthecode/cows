@@ -1,4 +1,3 @@
-// env vars and requirements
 require('dotenv').config();
 const port = process.env.PORT;
 const mongoUri = process.env.MONGO_URI;
@@ -7,9 +6,8 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const routes = require('./routes/routes');
+const router = require('./routes/routes');
 
-// database connection and server initialization
 mongoose
   .connect(mongoUri, {
     useCreateIndex: true,
@@ -17,16 +15,17 @@ mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log(`Connected to MongoDB`);
+    console.log(`MongoDB connected`);
   })
   .then(() => {
     const app = express();
     app.use(cors());
+    app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
     app.use(express.static(path.join(__dirname, '../frontend/dist')));
-    app.use('/api', routes);
+    app.use('/api', router);
 
     app.listen(port, () => {
-      console.log(`Server listening on ${port}`);
+      console.log(`Express ${port}`);
     });
   });
