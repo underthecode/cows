@@ -4,10 +4,10 @@
   "description": "CRUD app",
   "main": "./client/src/index.jsx",
   "scripts": {
-    "start:dev": "nodemon server/index.js",
+    "start:dev": "nodemon backend/index.js",
     "build:dev": "webpack -d --watch",
     "dev": "concurrently \"npm run start:dev\" \"npm run build:dev\"",
-    "start": "node server/index.js"
+    "start": "node backend/index.js"
   },
   "author": "underthecode",
   "license": "ISC",
