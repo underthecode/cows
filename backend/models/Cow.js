@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let cowSchema = new mongoose.Schema(
+const cowSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     description: { type: String, required: true }
@@ -10,6 +10,6 @@ let cowSchema = new mongoose.Schema(
   }
 );
 
-let Cow = mongoose.model('Cow', cowSchema);
+const Cow = mongoose.model('Cow', cowSchema);
 
 module.exports = { Cow };
