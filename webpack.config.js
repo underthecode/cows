@@ -1,6 +1,6 @@
 const path = require('path');
-const SRC_DIR = path.join(__dirname, '/client/src');
-const DIST_DIR = path.join(__dirname, '/client/dist');
+const SRC_DIR = path.join(__dirname, '/frontend/src');
+const DIST_DIR = path.join(__dirname, '/frontend/dist');
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,

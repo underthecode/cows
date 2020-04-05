@@ -23,7 +23,7 @@ mongoose
     const app = express();
     app.use(cors());
     app.use(express.json());
-    app.use(express.static(path.join(__dirname, '../client/dist')));
+    app.use(express.static(path.join(__dirname, '../frontend/dist')));
     app.use('/', routes);
 
     app.listen(port, () => {

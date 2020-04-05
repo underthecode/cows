@@ -2,7 +2,7 @@
   "name": "cows",
   "version": "1.0.0",
   "description": "CRUD app",
-  "main": "./client/src/index.jsx",
+  "main": "./frontend/src/index.jsx",
   "scripts": {
     "start:dev": "nodemon backend/index.js",
     "build:dev": "webpack -d --watch",
