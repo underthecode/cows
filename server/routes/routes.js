@@ -65,4 +65,16 @@ router.patch('/api/cow/:id', (req, res) => {
     });
 });
 
+router.delete('/api/cow/:id', (req, res) => {
+  const _id = req.params.id;
+
+  models.Cow.findOneAndDelete({ _id })
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+});
+
 module.exports = router;
