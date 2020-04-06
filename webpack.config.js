@@ -39,6 +39,7 @@ module.exports = {
   },
   devServer: {
     contentBase: DIST_DIR,
+    historyApiFallback: true,
     port: 3000,
     publicPath: 'http://localhost:3000/dist/',
     hotOnly: true,
