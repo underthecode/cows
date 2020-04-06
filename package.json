@@ -5,8 +5,9 @@
   "main": "./frontend/src/index.jsx",
   "scripts": {
     "start:dev": "nodemon backend/index.js",
-    "build:dev": "webpack-dev-server --mode development",
-    "dev": "concurrently \"npm run start:dev\" \"npm run build:dev\"",
+    "build:dev": "webpack --mode development --watch",
+    "build:dev-server": "webpack-dev-server --mode development",
+    "dev": "concurrently \"npm run start:dev\" \"npm run build:dev\" \"npm run build:dev-server\"",
     "start": "node backend/index.js",
     "build": "webpack --mode production"
   },
