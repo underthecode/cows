@@ -14,35 +14,35 @@ module.exports = {
         include: SRC_DIR,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-        },
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        }
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader',
-          },
-        ],
+            loader: 'html-loader'
+          }
+        ]
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-    ],
+        use: ['style-loader', 'css-loader']
+      }
+    ]
   },
   resolve: { extensions: ['*', '.js', '.jsx'] },
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
-    publicPath: '/dist/',
+    publicPath: '/'
   },
   devServer: {
     contentBase: DIST_DIR,
     historyApiFallback: true,
     port: 3000,
-    publicPath: 'http://localhost:3000/dist/',
-    hotOnly: true,
+    publicPath: 'http://localhost:3000/',
+    hotOnly: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 };
