@@ -2,8 +2,11 @@ const mongoose = require('mongoose');
 
 const cowSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    description: { type: String, required: true }
+    name: {
+      type: String,
+      required: [true, 'Name is required']
+    },
+    description: { type: String, required: [true, 'Description is required'] }
   },
   {
     timestamps: true
