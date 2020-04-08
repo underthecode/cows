@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models/Cow');
 
-router.post('/api/cow', async (req, res) => {
+router.post('/cows', async (req, res) => {
   try {
     const { name, description } = req.body;
     const data = await new models.Cow({
@@ -16,7 +16,7 @@ router.post('/api/cow', async (req, res) => {
   }
 });
 
-router.get('/api/cows', async (req, res) => {
+router.get('/cows', async (req, res) => {
   try {
     const data = await models.Cow.find();
     res.status(200).json(data);
@@ -25,7 +25,7 @@ router.get('/api/cows', async (req, res) => {
   }
 });
 
-router.get('/api/cow/:id', async (req, res) => {
+router.get('/cows/:id', async (req, res) => {
   try {
     const _id = req.params.id;
     const data = await models.Cow.findOne({ _id });
@@ -35,7 +35,7 @@ router.get('/api/cow/:id', async (req, res) => {
   }
 });
 
-router.patch('/api/cow/:id', async (req, res) => {
+router.patch('/cows/:id', async (req, res) => {
   try {
     const _id = req.params.id;
     const data = await models.Cow.findOne({ _id });
@@ -55,7 +55,7 @@ router.patch('/api/cow/:id', async (req, res) => {
   }
 });
 
-router.delete('/api/cow/:id', async (req, res) => {
+router.delete('/cows/:id', async (req, res) => {
   try {
     const _id = req.params.id;
     await models.Cow.deleteOne({ _id });
