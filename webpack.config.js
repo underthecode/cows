@@ -1,5 +1,8 @@
-const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const path = require('path');
+
 const SRC_DIR = path.join(__dirname, '/frontend/src');
 const DIST_DIR = path.join(__dirname, '/frontend/dist');
 
@@ -18,11 +21,6 @@ module.exports = {
         }
       },
       {
-        test: /\.(js|jsx)$/,
-        use: 'react-hot-loader/webpack',
-        include: /node_modules/
-      },
-      {
         test: /\.html$/,
         use: [
           {
@@ -39,15 +37,22 @@ module.exports = {
   resolve: { extensions: ['*', '.js', '.jsx'] },
   output: {
     filename: 'bundle.js',
-    path: DIST_DIR,
-    publicPath: '/'
+    path: DIST_DIR
   },
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: DIST_DIR,
     historyApiFallback: true,
     port: 3000,
     publicPath: 'http://localhost:3000/',
-    hotOnly: true
+    hot: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      inject: true,
+      template: `${SRC_DIR}/index.html`
+    })
+  ]
 };
