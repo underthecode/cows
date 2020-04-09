@@ -1,5 +1,7 @@
 # compiled files
+frontend/dist/*
 frontend/dist/bundle.js
+frontend/dist/index.html
 
 # dependency directories
 node_modules
