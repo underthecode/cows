@@ -30,7 +30,7 @@ const CowList = () => {
         return (
           <div key={cow._id}>
             <h4>
-              <Link to={`/cows/${cow._id}`}>{cow.title}</Link>
+              <Link to={`/cows/${cow._id}`}>{cow.name}</Link>
             </h4>
             <small>_id: {cow._id}</small>
             <hr />
