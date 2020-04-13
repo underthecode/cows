@@ -6,6 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 import Home from './root/Home.jsx';
+import CowList from './cows/CowList.jsx';
 
 const App = () => {
   return (
@@ -30,6 +31,15 @@ const Navigation = () => {
               Home
             </NavLink>
           </li>
+          <li className='nav-item'>
+            <NavLink
+              exact
+              className='nav-link'
+              activeClassName='active'
+              to='/cows'>
+              Cows
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>
@@ -40,6 +50,7 @@ const Main = () => {
   return (
     <Switch>
       <Route exact path='/' component={Home} />
+      <Route exact path='/cows' component={CowList} />
     </Switch>
   );
 };
