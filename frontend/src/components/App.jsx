@@ -8,6 +8,7 @@ import {
 import Home from './root/Home.jsx';
 import CowList from './cows/CowList.jsx';
 import CowInfo from './cows/CowInfo.jsx';
+import CowCreate from './cows/CowCreate.jsx';
 
 const App = () => {
   return (
@@ -52,6 +53,7 @@ const Main = () => {
     <Switch>
       <Route exact path='/' component={Home} />
       <Route exact path='/cows' component={CowList} />
+      <Route exact path='/cows/new' component={CowCreate} />
       <Route exact path='/cows/:_id' component={CowInfo} />
     </Switch>
   );
