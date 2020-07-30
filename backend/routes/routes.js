@@ -2,10 +2,20 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models/Cow');
 
-router.post('/cows', async (req, res) => {
+router.post('/test', async (req, res) => {
+  try {
+    const { string_to_cut } = req.body;
+    const data = models.everyThirdChar(string_to_cut);
+    res.status(201).json(data);
+  } catch {
+    res.status(403).send({ error: 'Empty string detected' });
+  }
+});
+
+router.post('/api/cows', async (req, res) => {
   try {
     const { name, description } = req.body;
-    const data = await new models.Cow({
+    const data = new models.Cow({
       name,
       description
     });
@@ -16,7 +26,7 @@ router.post('/cows', async (req, res) => {
   }
 });
 
-router.get('/cows', async (req, res) => {
+router.get('/api/cows', async (req, res) => {
   try {
     const data = await models.Cow.find();
     res.status(200).json(data);
@@ -25,7 +35,7 @@ router.get('/cows', async (req, res) => {
   }
 });
 
-router.get('/cows/:id', async (req, res) => {
+router.get('/api/cows/:id', async (req, res) => {
   try {
     const _id = req.params.id;
     const data = await models.Cow.findOne({ _id });
@@ -35,7 +45,7 @@ router.get('/cows/:id', async (req, res) => {
   }
 });
 
-router.patch('/cows/:id', async (req, res) => {
+router.patch('/api/cows/:id', async (req, res) => {
   try {
     const _id = req.params.id;
     const data = await models.Cow.findOne({ _id });
@@ -55,7 +65,7 @@ router.patch('/cows/:id', async (req, res) => {
   }
 });
 
-router.delete('/cows/:id', async (req, res) => {
+router.delete('/api/cows/:id', async (req, res) => {
   try {
     const _id = req.params.id;
     await models.Cow.deleteOne({ _id });
