@@ -6,9 +6,9 @@ router.post('/test', async (req, res) => {
   try {
     const { string_to_cut } = req.body;
     const data = models.everyThirdChar(string_to_cut);
-    res.status(201).json(data);
+    res.status(201).json({ return_string: data });
   } catch {
-    res.status(403).send({ error: 'Empty string detected' });
+    res.status(400).send({ error: 'You broke the model' });
   }
 });
 
