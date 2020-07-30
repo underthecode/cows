@@ -26,6 +26,6 @@ mongoose
     app.use('/api', router);
 
     app.listen(port, () => {
-      console.log(`Express ${port}`);
+      console.log(`Listening on http://localhost:${port}`);
     });
   });
