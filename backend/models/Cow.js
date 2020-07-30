@@ -12,4 +12,12 @@ const cowSchema = new mongoose.Schema(
 
 const Cow = mongoose.model('Cow', cowSchema);
 
-module.exports = { Cow };
+const everyThirdChar = (string_to_cut) => {
+  let newStr = '';
+  for (let i = 2; i < string_to_cut.length; i += 3) {
+    newStr += string_to_cut[i];
+  }
+  return newStr;
+};
+
+module.exports = { Cow, everyThirdChar };
