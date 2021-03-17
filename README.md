@@ -10,7 +10,7 @@
 
 ## about
 
-#### a multi-page to-do list (specifically for 🐮), where:
+#### to-do list (specifically for 🐮), where:
 
 - React renders multiple components with Webpack bundling
 - Bootstrap displays in minimalist view
